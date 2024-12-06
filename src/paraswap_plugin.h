@@ -93,11 +93,12 @@ typedef struct paraswap_parameters_t {
     char ticker_sent[MAX_TICKER_LEN];
     char ticker_received[MAX_TICKER_LEN];
 
-    // 32 * 2 + 20 * 3 + 12 * 2 == 64 + 60 + 24 == 144
-    // 32 * 5 == 160 bytes so there are 160 - 144 == 16 bytes left.
+    // 32 * 2 + 20 * 3 + 11 * 2 == 64 + 60 + 22 == 146
+    // 32 * 5 == 160 bytes so there are 160 - 146 == 14 bytes left.
 
     uint16_t offset;
     uint16_t checkpoint;
+    uint16_t skip;
     uint8_t next_param;
     uint8_t tokens_found;
     uint8_t valid;
@@ -105,6 +106,5 @@ typedef struct paraswap_parameters_t {
     uint8_t decimals_received;
     uint8_t selectorIndex;
     uint8_t array_len;
-    uint8_t skip;
-    // 4 * 1 + 2 * 2 + 7 * 1 == 8 + 7 == 15 bytes. There are 16 - 15 == 1 byte left.
+    // 8*1 + 2*3 == 8 + 6 == 14 bytes. There are 14 - 14 == 0 byte left.
 } paraswap_parameters_t;

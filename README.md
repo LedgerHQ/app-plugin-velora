@@ -27,13 +27,18 @@ Need more information about the interface, the architecture, or general stuff ab
 Smart contracts covered by this plugin are:
 
 | Network | Version | Smart Contract |
-| ---       | --- | --- |
-| Ethereum  | V4  | `0x1bd435f3c054b6e901b7b108a0ab7617c808677b` |
-| Ethereum  | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
-| BSC       | V4  | `0x55a0e3b6579972055faa983482aceb4b251dcf15`|
-| BSC       | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
-| Polygon   | V4  | `0x90249ed4d69d70e709ffcd8bee2c5a566f65dade`|
-| Polygon   | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
+| ---            | --- | --- |
+| Arbitrum       | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
+| Base           | V5  | `0x59c7c832e96d2568bea6db468c1aadcbbda08a52`|
+| BSC            | V4  | `0x55a0e3b6579972055faa983482aceb4b251dcf15`|
+| BSC            | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
+| Ethereum       | V4  | `0x1bd435f3c054b6e901b7b108a0ab7617c808677b`|
+| Ethereum       | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
+| Fantom         | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
+| Optimism       | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
+| Polygon        | V4  | `0x90249ed4d69d70e709ffcd8bee2c5a566f65dade`|
+| Polygon        | V5  | `0xdef171fe48cf0115b1d80b88dc8eab59176fee57`|
+| Polygon ZK EVM | V5  | `0xb83b554730d29ce4cb55bb42206c3e2c03e4a40a`|
 
 
 

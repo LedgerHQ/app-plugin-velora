@@ -5,11 +5,12 @@ bin/
 debug/
 dep/
 obj/
-tests/elfs/plugin_nano*.elf
+tests/elfs/*
 build/
 
 # Editors
 .idea/
+.vscode/
 
 # Python
 *.pyc[cod]
@@ -23,3 +24,6 @@ __pycache__/
 tests/node_modules
 tests/lib
 tests/snapshots-tmp
+
+# MacOS
+.DS_Store

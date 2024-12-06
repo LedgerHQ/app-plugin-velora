@@ -1,4 +1,4 @@
-import Zemu from "@zondax/zemu";
+import Zemu from "@blooo/zemu";
 import fsExtra from "fs-extra";
 
 const catchExit = async () => {
