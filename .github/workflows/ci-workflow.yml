@@ -75,7 +75,7 @@ jobs:
           mv bin/app.elf plugin_${{ matrix.name }}.elf
 
       - name: Upload binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: binaries
           path: plugin_${{ matrix.name }}.elf
@@ -117,7 +117,7 @@ jobs:
           mv bin/app.elf ethereum_${{ matrix.name }}.elf
 
       - name: Upload binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: binaries
           path: ethereum_${{ matrix.name }}.elf
