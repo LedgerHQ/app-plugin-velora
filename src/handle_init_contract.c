@@ -51,6 +51,7 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
         case SWAP_ON_ZERO_V4:
         case SWAP_ON_ZERO_V2:
         case SWAP_ON_UNI_V2_FORK:
+        case DIRECT_UNI_V3_SWAP:
             context->next_param = TOKEN_SENT;
             break;
         case MEGA_SWAP:
