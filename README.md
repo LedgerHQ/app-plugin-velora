@@ -1,26 +1,28 @@
+[![Ensure compliance with Ledger guidelines](https://github.com/blooo-io/app-plugin-paraswap/actions/workflows/guidelines_enforcer.yml/badge.svg?branch=develop)](https://github.com/blooo-io/app-plugin-paraswap/actions/workflows/guidelines_enforcer.yml)
+[![Compilation & tests](https://github.com/blooo-io/app-plugin-paraswap/actions/workflows/ci-workflow.yml/badge.svg?branch=develop)](https://github.com/blooo-io/app-plugin-paraswap/actions/workflows/ci-workflow.yml)
+
+
 # Ledger Paraswap Plugin
 
 This is a plugin for the Ethereum application which helps parsing and displaying relevant information when signing a Paraswap transaction.
 
+
 ## Prerequisite
 
-Be sure to have your environment correctly set up (see [Getting Started](https://ledger.readthedocs.io/en/latest/userspace/getting_started.html)) and [ledgerblue](https://pypi.org/project/ledgerblue/) and installed.
+Clone the plugin to a new folder.
 
-If you want to benefit from [vscode](https://code.visualstudio.com/) integration, it's recommended to move the toolchain in `/opt` and set `BOLOS_ENV` environment variable as follows
-
-```
-BOLOS_ENV=/opt/bolos-devenv
+```shell
+git clone https://github.com/blooo-io/app-plugin-paraswap.git
 ```
 
-and do the same with `BOLOS_SDK` environment variable
+Then in the same folder clone one more repository, which is the app-ethereum.
 
+```shell
+git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum.git     #app-ethereum
 ```
-BOLOS_SDK=/opt/nanos-secure-sdk
-```
-
 ## Documentation
 
-Need more information about the interface, the architecture, or general stuff about ethereum plugins? You can find more about them in the [ethereum-app documentation](https://github.com/LedgerHQ/app-ethereum/blob/master/doc/ethapp_plugins.asc).
+Need more information about the interface, the architecture, or general stuff about ethereum plugins? You can find more about them [here](https://ethereum-plugin-sdk.ledger.com/).
 
 ## Smart Contracts
 
@@ -41,61 +43,80 @@ Smart contracts covered by this plugin are:
 | Polygon ZK EVM | V5  | `0xb83b554730d29ce4cb55bb42206c3e2c03e4a40a`|
 
 
+## Build
 
-
-## Compilation
-
+Go to the global folder (the one that contains both apps) and run the below command.
+```shell
+sudo docker run --rm -ti -v "$(realpath .):/app" --user $(id -u $USER):$(id -g $USER) ghcr.io/ledgerhq/ledger-app-builder/ledger-app-dev-tools:latest
 ```
-make DEBUG=1  # compile optionally with PRINTF
-make load     # load the app on the Nano using ledgerblue
+The script will build a docker image and attach a console.
+When the docker image is running go to the "app-plugin-paraswap" folder and build the ".elf" files.
+```shell
+cd app-plugin-paraswap/tests       # go to the tests folder in app-plugin-paraswap
+./build_local_test_elfs.sh              # run the script build_local_test_elfs.sh
 ```
 
-This plugin uses the [ethereum-plugin-sdk](https://github.com/LedgerHQ/ethereum-plugin-sdk/). If there's an error while building, try running `git pull --recurse-submodules` in order to update the sdk. If this fixes your bug, please file an issue or create a PR to add the new sdk version :)
+## Tests
 
-If you need to update the sdk, you will need to do it locally and create a PR on the [ethereum-plugin-sdk repo](https://github.com/LedgerHQ/ethereum-plugin-sdk/).
+To test the plugin go to the tests folder from the "app-plugin-paraswap" and run the script "test"
+```shell
+cd app-plugin-paraswap/tests       # go to the tests folder in app-plugin-paraswap
+yarn test                       # run the script test
+```
+## Loading on a physical device
 
-## Tests & Continuous Integration
+This step will vary slightly depending on your platform.
+
+Your physical device must be connected, unlocked and the screen showing the dashboard (not inside an application).
+
+**Linux (Ubuntu)**
+
+First make sure you have the proper udev rules added on your host :
+
+```shell
+# Run these commands on your host, from the app's source folder.
+sudo cp .vscode/20-ledger.ledgerblue.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules 
+sudo udevadm trigger
+```
+
+Then once you have [opened a terminal](#with-a-terminal) in the `app-builder` image and [built the app](#compilation-and-load) for the device you want, run the following command :
+
+```shell
+# Run this command from the app-builder container terminal.
+make load    # load the app on a Nano S by default
+```
+
+[Setting the BOLOS_SDK environment variable](#compilation-and-load) will allow you to load on whichever supported device you want.
+
+**macOS / Windows (with PowerShell)**
+
+It is assumed you have [Python](https://www.python.org/downloads/) installed on your computer.
+
+Run these commands on your host from the app's source folder once you have [built the app](#compilation-and-load) for the device you want :
+
+```shell
+# Install Python virtualenv
+python3 -m pip install virtualenv 
+# Create the 'ledger' virtualenv
+python3 -m virtualenv ledger
+```
+
+Enter the Python virtual environment
+
+* macOS : `source ledger/bin/activate`
+* Windows : `.\ledger\Scripts\Activate.ps1`
+
+```shell
+# Install Ledgerblue (tool to load the app)
+python3 -m pip install ledgerblue 
+# Load the app.
+python3 -m ledgerblue.runScript --scp --fileName bin/app.apdu --elfFile bin/app.elf
+```
+## Continuous Integration
+
 
 The flow processed in [GitHub Actions](https://github.com/features/actions) is the following:
 
 - Code formatting with [clang-format](http://clang.llvm.org/docs/ClangFormat.html)
 - Compilation of the application for Ledger Nano S in [ledger-app-builder](https://github.com/LedgerHQ/ledger-app-builder)
-
-
-## RDP tests execution
-
-You can test the plugin using a remote development host, if you deal with an unsupported CPU architecture (Ex.: Apple M1). Your server must have a GUI Desktop installed.
-
-1. Install first xrdp on remote linux VM (Ex: Ubuntu 20.04.1)
-```
-sudo apt install xrdp
-````
-
-2. Set access control to none :
-```
-xhost +
-```
-> ```access control disabled, clients can connect from any host```
-
-
-3. Connect to the VM using Remote Desktop Client using port forwarding through ssh connection on port 3389. This will keep the security at maximum and avoid exposing the VM to the web on RDP port.
-
-```
-ssh -i PRIVATEKEY USERNAME@PUBLICIP -L 3389:localhost:3389
-```
-
-4. Identify the Display index:
-```
-echo $DISPLAY
-```
->```:10.0```
-
-5. In the terminal where are executed the tests set Display to the RDP previous value, here ``:10.0``:
-
-```
-export DISPLAY=:10.0
-```
-
-6. After this setup you could run ``yarn test`` and see the emulator in the RDP display going through the test sequence.
-
-
