@@ -5,6 +5,14 @@
             "address": "0x59c7c832e96d2568bea6db468c1aadcbbda08a52",
             "contractName": "AugustusSwapper",
             "selectors": {
+                "0xa6886da9": {
+                    "erc20OfInterest": [
+                        "data.fromToken",
+                        "data.toToken"
+                    ],
+                    "method": "directUniV3Swap",
+                    "plugin": "Paraswap"
+                },
                 "0x54840d1a": {
                     "erc20OfInterest": [
                         "path.0",

@@ -104,6 +104,9 @@ static void handle_simple_calls(ethPluginProvideParameter_t *msg, paraswap_param
         case TOKEN_RECEIVED:  // toToken
             handle_token_received(msg, context);
             context->next_param = AMOUNT_SENT;
+            if (context->selectorIndex == DIRECT_UNI_V3_SWAP) {
+                context->skip = 1;  // exchange
+            }
             break;
         case AMOUNT_SENT:  // fromAmount
             handle_amount_sent(msg, context);
@@ -115,6 +118,8 @@ static void handle_simple_calls(ethPluginProvideParameter_t *msg, paraswap_param
             context->skip = 4;  // callees, exchangeData, startIndexes, values.
             if (context->selectorIndex == SIMPLE_SWAP || context->selectorIndex == SIMPLE_SWAP_V4) {
                 context->skip++;  // skip field expectedAmount for simple swap.
+            } else if (context->selectorIndex == DIRECT_UNI_V3_SWAP) {
+                context->skip = 5;  // expectedAmount, feePercent, deadline, partner, isApproved
             }
             break;
         case BENEFICIARY:
@@ -381,6 +386,7 @@ void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
             case SIMPLE_BUY:
             case SIMPLE_SWAP:
             case SIMPLE_SWAP_V4:
+            case DIRECT_UNI_V3_SWAP:
                 handle_simple_calls(msg, context);
                 break;
 

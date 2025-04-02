@@ -61,6 +61,7 @@ void handle_init_contract(ethPluginInitContract_t *msg) {
         case SIMPLE_SWAP_V4:
         case MULTI_SWAP_V4:
         case MEGA_SWAP_V4:
+        case DIRECT_UNI_V3_SWAP:
             context->next_param = TOKEN_SENT;
             if (context->selectorIndex != SIMPLE_SWAP_V4)
                 context->skip = 1;  // Skipping 0x20 (offset of structure)

@@ -17,6 +17,7 @@ static bool set_send_ui(ethQueryContractUI_t *msg, paraswap_parameters_t *contex
         case SWAP_ON_UNI_FORK_V4:
         case MULTI_SWAP_V4:
         case MEGA_SWAP_V4:
+        case DIRECT_UNI_V3_SWAP:
             strlcpy(msg->title, "Send", msg->titleLength);
             break;
         case BUY_ON_UNI_FORK:
@@ -59,6 +60,7 @@ static bool set_receive_ui(ethQueryContractUI_t *msg, paraswap_parameters_t *con
         case SWAP_ON_UNI_FORK_V4:
         case MULTI_SWAP_V4:
         case MEGA_SWAP_V4:
+        case DIRECT_UNI_V3_SWAP:
             strlcpy(msg->title, "Receive Min", msg->titleLength);
             break;
         case BUY_ON_UNI_FORK:
