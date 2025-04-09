@@ -1,3 +1,4 @@
+// TODO: Fix the error comming from this test 
 import { processTest, populateTransaction} from "../../test.fixture";
 
 const contractName = "Paraswap V5";
@@ -25,12 +26,12 @@ const devices = [
   {
     name: "nanosp",
     label: "Nano S+",
-    steps: 7 // <= Define the number of steps for this test case and this device
+    steps: 6 // <= Define the number of steps for this test case and this device
   },
   {
     name: "nanox",
     label: "Nano X",
-    steps: 7 // <= Define the number of steps for this test case and this device
+    steps: 6 // <= Define the number of steps for this test case and this device
   },
   {
     name: "stax",

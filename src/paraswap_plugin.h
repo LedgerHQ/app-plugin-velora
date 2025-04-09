@@ -8,7 +8,7 @@
 
 #define RUN_APPLICATION 1
 
-#define NUM_PARASWAP_SELECTORS 19
+#define NUM_PARASWAP_SELECTORS 20
 #define SELECTOR_SIZE          4
 
 #define PLUGIN_NAME "Paraswap"
@@ -27,6 +27,7 @@ extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];
 #define ADDRESS_IS_NETWORK_TOKEN(_addr) (!memcmp(_addr, PARASWAP_ETH_ADDRESS, ADDRESS_LENGTH))
 
 typedef enum {
+    DIRECT_UNI_V3_SWAP,
     SWAP_ON_UNI,
     BUY_ON_UNI,
     SWAP_ON_UNI_FORK,

@@ -19,6 +19,13 @@
 #include "paraswap_plugin.h"
 
 // ---------- Paraswap V5 -------------
+
+// Function: directUniV3Swap((address fromToken, address toToken, address exchange, uint256
+// fromAmount, uint256 toAmount, uint256 expectedAmount, uint256 feePercent, uint256 deadline,
+// address partner, bool isApproved, address beneficiary, bytes path, bytes permit, bytes16 uuid))
+// Selector: 0xa6886da9
+static const uint8_t PARASWAP_DIRECT_UNI_V3_SWAP_SELECTOR[SELECTOR_SIZE] = {0xa6, 0x88, 0x6d, 0xa9};
+
 // Function: swapOnUniswap(uint256 amountIn, uint256 amountOutMin, address[] path) ***
 // Selector: 0x54840d1a
 static const uint8_t PARASWAP_SWAP_ON_UNISWAP_SELECTOR[SELECTOR_SIZE] = {0x54, 0x84, 0x0d, 0x1a};
@@ -139,6 +146,7 @@ static const uint8_t PARASWAP_BUY_ON_UNISWAP_FORK_V4_SELECTOR[SELECTOR_SIZE] = {
 
 // Array of all the different paraswap selectors.
 const uint8_t *const PARASWAP_SELECTORS[NUM_PARASWAP_SELECTORS] = {
+    PARASWAP_DIRECT_UNI_V3_SWAP_SELECTOR,
     PARASWAP_SWAP_ON_UNISWAP_SELECTOR,
     PARASWAP_BUY_ON_UNISWAP_SELECTOR,
     PARASWAP_SWAP_ON_UNISWAP_FORK_SELECTOR,

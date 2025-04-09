@@ -19,6 +19,7 @@ void handle_query_contract_id(ethQueryContractID_t *msg) {
         case SWAP_ON_UNI_FORK_V4:
         case MULTI_SWAP_V4:
         case MEGA_SWAP_V4:
+        case DIRECT_UNI_V3_SWAP:
             strlcpy(msg->version, "Swap", msg->versionLength);
             break;
         case SIMPLE_BUY:

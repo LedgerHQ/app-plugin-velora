@@ -6,7 +6,7 @@
 #NANOSP_SDK=
 #FLEX_SDK=
 #STAX_SDK=
-APP_ETHEREUM=/plugin_dev/app-ethereum
+APP_ETHEREUM=/app/app-ethereum
 
 # Create elfs folder if it doesn't exist
 mkdir -p elfs

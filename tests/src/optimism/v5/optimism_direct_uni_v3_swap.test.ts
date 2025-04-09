@@ -1,0 +1,63 @@
+import { processTest, populateTransaction } from "../../test.fixture";
+
+const contractName = "Paraswap V5";
+
+const testLabel = "Direct Uni V3 Swap"; // <= Name of the test
+const testDirSuffix = "direct_uni_v3_swap"; // <= directory to compare device snapshots to
+const testNetwork = "optimism";
+const signedPlugin = false;
+
+const contractAddr = "0xdef171fe48cf0115b1d80b88dc8eab59176fee57";
+const chainID = 10; // OPTIMISM
+
+// From : https://optimistic.etherscan.io/tx/0xe96b4c8386a7329b96d404357f2317e8c5a490034fa45e3027b713d38483c47a
+// Swap 0.03829975 WBTC for 1 WETH
+const inputData =
+  "0xa6886da90000000000000000000000000000000000000000000000000000000000000020000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee00000000000000000000000068f180fcce6836688e9084f035309e29bf0a2095000000000000000000000000e592427a0aece92de3edee1f18e0157c058615640000000000000000000000000000000000000000000000000de0b6b3a764000000000000000000000000000000000000000000000000000000000000003a60e600000000000000000000000000000000000000000000000000000000003a6fdb010000000000000000000000000000000000000000000000000000000003138800000000000000000000000000000000000000000000000000000000674b010f00000000000000000000000008a3c2a819e3de7aca384c798269b3ce1cd0e4370000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001c00000000000000000000000000000000000000000000000000000000000000220a0943ef88e6648fc9e3b1092317892c800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002b42000000000000000000000000000000000000060001f468f180fcce6836688e9084f035309e29bf0a20950000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+
+// Create serializedTx and remove the "0x" prefix
+const serializedTx = populateTransaction(
+  contractAddr,
+  inputData,
+  chainID,
+  "30"
+);
+
+const devices = [
+  {
+    name: "nanos",
+    label: "Nano S",
+    steps: 6, // <= Define the number of steps for this test case and this device
+  },
+  {
+    name: "nanosp",
+    label: "Nano S+",
+    steps: 6, // <= Define the number of steps for this test case and this device
+  },
+  {
+    name: "nanox",
+    label: "Nano X",
+    steps: 6, // <= Define the number of steps for this test case and this device
+  },
+  {
+    name: "stax",
+    label: "Stax",
+  },
+  {
+    name: "flex",
+    label: "Flex",
+  },
+];
+
+devices.forEach((device) =>
+  processTest(
+    device,
+    contractName,
+    testLabel,
+    testDirSuffix,
+    "",
+    signedPlugin,
+    serializedTx,
+    testNetwork
+  )
+);
