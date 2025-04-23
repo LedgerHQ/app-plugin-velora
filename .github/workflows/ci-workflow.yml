@@ -21,6 +21,10 @@ jobs:
             name: "nanox"
           - sdk: "$NANOSP_SDK"
             name: "nanosp"
+          - sdk: "$STAX_SDK"
+            name: "stax"
+          - sdk: "$FLEX_SDK"
+            name: "flex"
 
     runs-on: ubuntu-latest
     container:
@@ -47,6 +51,10 @@ jobs:
             name: "nanox"
           - sdk: "$NANOSP_SDK"
             name: "nanosp"
+          - sdk: "$STAX_SDK"
+            name: "stax"
+          - sdk: "$FLEX_SDK"
+            name: "flex"
 
     runs-on: ubuntu-latest
     container:
@@ -67,9 +75,9 @@ jobs:
           mv bin/app.elf plugin_${{ matrix.name }}.elf
 
       - name: Upload binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: binaries
+          name: plugin_binary_${{ matrix.name }}
           path: plugin_${{ matrix.name }}.elf
 
   job_build_debug_app:
@@ -83,6 +91,10 @@ jobs:
             name: "nanox"
           - sdk: "$NANOSP_SDK"
             name: "nanosp"
+          - sdk: "$STAX_SDK"
+            name: "stax"
+          - sdk: "$FLEX_SDK"
+            name: "flex"
 
     runs-on: ubuntu-latest
     container:
@@ -93,6 +105,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: LedgerHQ/app-ethereum
+          submodules: recursive
           ref: ${{ ((github.base_ref || github.ref_name) == 'main' && 'master') || (github.base_ref || github.ref_name) }}
 
       - name: Build
@@ -104,9 +117,9 @@ jobs:
           mv bin/app.elf ethereum_${{ matrix.name }}.elf
 
       - name: Upload binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: binaries
+          name: ethereum_binary_${{ matrix.name }}
           path: ethereum_${{ matrix.name }}.elf
 
   jobs-e2e-tests:
@@ -118,10 +131,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download built binaries
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
-          name: binaries
+          pattern: "*_binary_*"
           path: tests/elfs/
+          merge-multiple: true
 
       - name: Install node
         uses: actions/setup-node@v3

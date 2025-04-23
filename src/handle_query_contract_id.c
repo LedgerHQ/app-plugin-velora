@@ -1,7 +1,6 @@
 #include "paraswap_plugin.h"
 
-void handle_query_contract_id(void *parameters) {
-    ethQueryContractID_t *msg = (ethQueryContractID_t *) parameters;
+void handle_query_contract_id(ethQueryContractID_t *msg) {
     const paraswap_parameters_t *context = (paraswap_parameters_t *) msg->pluginContext;
 
     strlcpy(msg->name, PLUGIN_NAME, msg->nameLength);
@@ -20,6 +19,7 @@ void handle_query_contract_id(void *parameters) {
         case SWAP_ON_UNI_FORK_V4:
         case MULTI_SWAP_V4:
         case MEGA_SWAP_V4:
+        case DIRECT_UNI_V3_SWAP:
             strlcpy(msg->version, "Swap", msg->versionLength);
             break;
         case SIMPLE_BUY:

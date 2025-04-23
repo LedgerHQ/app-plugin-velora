@@ -104,6 +104,9 @@ static void handle_simple_calls(ethPluginProvideParameter_t *msg, paraswap_param
         case TOKEN_RECEIVED:  // toToken
             handle_token_received(msg, context);
             context->next_param = AMOUNT_SENT;
+            if (context->selectorIndex == DIRECT_UNI_V3_SWAP) {
+                context->skip = 1;  // exchange
+            }
             break;
         case AMOUNT_SENT:  // fromAmount
             handle_amount_sent(msg, context);
@@ -115,6 +118,8 @@ static void handle_simple_calls(ethPluginProvideParameter_t *msg, paraswap_param
             context->skip = 4;  // callees, exchangeData, startIndexes, values.
             if (context->selectorIndex == SIMPLE_SWAP || context->selectorIndex == SIMPLE_SWAP_V4) {
                 context->skip++;  // skip field expectedAmount for simple swap.
+            } else if (context->selectorIndex == DIRECT_UNI_V3_SWAP) {
+                context->skip = 5;  // expectedAmount, feePercent, deadline, partner, isApproved
             }
             break;
         case BENEFICIARY:
@@ -296,13 +301,15 @@ static void handle_megaswap(ethPluginProvideParameter_t *msg, paraswap_parameter
             }
             context->next_param = PATHS_LEN;
             break;
-        case PATHS_LEN:
-            if (!U2BE_from_parameter(msg->parameter, &context->skip)) {
+        case PATHS_LEN: {
+            uint16_t skip;
+            if (!U2BE_from_parameter(msg->parameter, &skip)) {
                 msg->result = ETH_PLUGIN_RESULT_ERROR;
             }
+            context->skip = (uint8_t) skip;
             context->skip--;  // Decrease by one because we wish to acces path[-1].
             context->next_param = PATH;
-            break;
+        } break;
         case PATH:
             context->checkpoint = msg->parameterOffset;
             if (!U2BE_from_parameter(msg->parameter, &context->offset)) {
@@ -347,8 +354,7 @@ static void handle_swap_uni_v2(ethPluginProvideParameter_t *msg, paraswap_parame
     }
 }
 
-void handle_provide_parameter(void *parameters) {
-    ethPluginProvideParameter_t *msg = (ethPluginProvideParameter_t *) parameters;
+void handle_provide_parameter(ethPluginProvideParameter_t *msg) {
     paraswap_parameters_t *context = (paraswap_parameters_t *) msg->pluginContext;
 
     msg->result = ETH_PLUGIN_RESULT_OK;
@@ -380,6 +386,7 @@ void handle_provide_parameter(void *parameters) {
             case SIMPLE_BUY:
             case SIMPLE_SWAP:
             case SIMPLE_SWAP_V4:
+            case DIRECT_UNI_V3_SWAP:
                 handle_simple_calls(msg, context);
                 break;
 

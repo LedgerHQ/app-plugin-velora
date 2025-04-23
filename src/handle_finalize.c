@@ -1,12 +1,12 @@
 #include "paraswap_plugin.h"
 
-void handle_finalize(void *parameters) {
-    ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
+void handle_finalize(ethPluginFinalize_t *msg) {
     paraswap_parameters_t *context = (paraswap_parameters_t *) msg->pluginContext;
     if (context->valid) {
         msg->numScreens = 2;
         if ((context->selectorIndex == SIMPLE_SWAP || context->selectorIndex == SIMPLE_BUY ||
-             context->selectorIndex == SIMPLE_SWAP_V4) &&
+             context->selectorIndex == SIMPLE_SWAP_V4 ||
+             context->selectorIndex == DIRECT_UNI_V3_SWAP) &&
             (strncmp(context->beneficiary, (const char *) NULL_ETH_ADDRESS, ADDRESS_LENGTH) != 0)) {
             // An addiitonal screen is required to display the `beneficiary` field.
             msg->numScreens += 1;

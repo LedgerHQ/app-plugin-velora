@@ -1,9 +1,7 @@
 #include "paraswap_plugin.h"
 
 // Called once to init.
-void handle_init_contract(void *parameters) {
-    ethPluginInitContract_t *msg = (ethPluginInitContract_t *) parameters;
-
+void handle_init_contract(ethPluginInitContract_t *msg) {
     if (msg->interfaceVersion != ETH_PLUGIN_INTERFACE_VERSION_LATEST) {
         PRINTF("Wrong interface version: expected %d got %d\n",
                ETH_PLUGIN_INTERFACE_VERSION_LATEST,
@@ -63,6 +61,7 @@ void handle_init_contract(void *parameters) {
         case SIMPLE_SWAP_V4:
         case MULTI_SWAP_V4:
         case MEGA_SWAP_V4:
+        case DIRECT_UNI_V3_SWAP:
             context->next_param = TOKEN_SENT;
             if (context->selectorIndex != SIMPLE_SWAP_V4)
                 context->skip = 1;  // Skipping 0x20 (offset of structure)
