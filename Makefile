@@ -15,7 +15,7 @@
 #  limitations under the License.
 #*******************************************************************************
 
-APPNAME = "Paraswap"
+APPNAME = "Velora"
 
 # Application version
 APPVERSION_M = 2
