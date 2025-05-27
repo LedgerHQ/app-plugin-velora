@@ -2,9 +2,9 @@
 [![Compilation & tests](https://github.com/blooo-io/app-plugin-paraswap/actions/workflows/ci-workflow.yml/badge.svg?branch=develop)](https://github.com/blooo-io/app-plugin-paraswap/actions/workflows/ci-workflow.yml)
 
 
-# Ledger Paraswap Plugin
+# Ledger Velora Plugin
 
-This is a plugin for the Ethereum application which helps parsing and displaying relevant information when signing a Paraswap transaction.
+This is a plugin for the Ethereum application which helps parsing and displaying relevant information when signing a Velora transaction.
 
 
 ## Prerequisite
@@ -50,17 +50,17 @@ Go to the global folder (the one that contains both apps) and run the below comm
 sudo docker run --rm -ti -v "$(realpath .):/app" --user $(id -u $USER):$(id -g $USER) ghcr.io/ledgerhq/ledger-app-builder/ledger-app-dev-tools:latest
 ```
 The script will build a docker image and attach a console.
-When the docker image is running go to the "app-plugin-paraswap" folder and build the ".elf" files.
+When the docker image is running go to the "app-plugin-velora" folder and build the ".elf" files.
 ```shell
-cd app-plugin-paraswap/tests       # go to the tests folder in app-plugin-paraswap
+cd app-plugin-velora/tests       # go to the tests folder in app-plugin-velora
 ./build_local_test_elfs.sh              # run the script build_local_test_elfs.sh
 ```
 
 ## Tests
 
-To test the plugin go to the tests folder from the "app-plugin-paraswap" and run the script "test"
+To test the plugin go to the tests folder from the "app-plugin-velora" and run the script "test"
 ```shell
-cd app-plugin-paraswap/tests       # go to the tests folder in app-plugin-paraswap
+cd app-plugin-velora/tests       # go to the tests folder in app-plugin-velora
 yarn test                       # run the script test
 ```
 ## Loading on a physical device
