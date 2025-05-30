@@ -11,7 +11,7 @@
                         "data.toToken"
                     ],
                     "method": "directUniV3Swap",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x54840d1a": {
                     "erc20OfInterest": [
@@ -19,7 +19,7 @@
                         "path.-1"
                     ],
                     "method": "swapOnUniswap",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0xf5661034": {
                     "erc20OfInterest": [
@@ -27,7 +27,7 @@
                         "path.-1"
                     ],
                     "method": "swapOnUniswapFork",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x54e3f31b": {
                     "erc20OfInterest": [
@@ -35,7 +35,7 @@
                         "data.toToken"
                     ],
                     "method": "SimpleSwap",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x935fb84b": {
                     "erc20OfInterest": [
@@ -43,7 +43,7 @@
                         "path.-1"
                     ],
                     "method": "buyOnUniswap",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0xc03786b0": {
                     "erc20OfInterest": [
@@ -51,7 +51,7 @@
                         "path.-1"
                     ],
                     "method": "buyOnUniswapFork",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0xa94e78ef": {
                     "erc20OfInterest": [
@@ -59,7 +59,7 @@
                         "data.path.-1.to"
                     ],
                     "method": "multiSwap",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x46c67b6d": {
                     "erc20OfInterest": [
@@ -67,7 +67,7 @@
                         "data.path.0.path.-1.to"
                     ],
                     "method": "megaSwap",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x2298207a": {
                     "erc20OfInterest": [
@@ -75,7 +75,7 @@
                         "data.toToken"
                     ],
                     "method": "simpleBuy",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x64466805": {
                     "erc20OfInterest": [
@@ -83,7 +83,7 @@
                         "toToken"
                     ],
                     "method": "swapOnZeroXv4",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x81033120": {
                     "erc20OfInterest": [
@@ -91,7 +91,7 @@
                         "toToken"
                     ],
                     "method": "swapOnZeroXv2",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 }
             }
         },
@@ -104,14 +104,14 @@
                         "path.0",
                         "path.-1"
                     ],
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x33635226": {
                     "erc20OfInterest": [
                         "path.0",
                         "path.-1"
                     ],
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x58b9d179": {
                     "erc20OfInterest": [
@@ -119,21 +119,21 @@
                         "path.-1"
                     ],
                     "method": "swapOnUniswap",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0x8f00eccb": {
                     "erc20OfInterest": [
                         "data.fromToken",
                         "data.path.-1.to"
                     ],
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0xa27e8b6b": {
                     "erc20OfInterest": [
                         "fromToken",
                         "toToken"
                     ],
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0xcfc0afeb": {
                     "erc20OfInterest": [
@@ -141,28 +141,28 @@
                         "toToken"
                     ],
                     "method": "simpleSwap",
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0xec1d21dd": {
                     "erc20OfInterest": [
                         "data.fromToken",
                         "data.path.0.path.-1.to"
                     ],
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0xf9355f72": {
                     "erc20OfInterest": [
                         "path.0",
                         "path.-1"
                     ],
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 },
                 "0xf95a49eb": {
                     "erc20OfInterest": [
                         "data.fromToken",
                         "data.toToken"
                     ],
-                    "plugin": "Paraswap"
+                    "plugin": "Velora"
                 }
             }
         }

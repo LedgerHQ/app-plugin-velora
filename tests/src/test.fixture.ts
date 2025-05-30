@@ -28,10 +28,10 @@ const APP_PATH_NANOSP = Resolve('elfs/ethereum_nanosp.elf');
 const APP_PATH_STAX = Resolve('elfs/ethereum_stax.elf');
 const APP_PATH_FLEX = Resolve('elfs/ethereum_flex.elf');
 
-const PLUGIN_LIB_NANOX = { 'Paraswap': Resolve('elfs/plugin_nanox.elf') };
-const PLUGIN_LIB_NANOSP = { 'Paraswap': Resolve('elfs/plugin_nanosp.elf') };
-const PLUGIN_LIB_STAX = { 'Paraswap': Resolve('elfs/plugin_stax.elf') };
-const PLUGIN_LIB_FLEX = { 'Paraswap': Resolve('elfs/plugin_flex.elf') };
+const PLUGIN_LIB_NANOX = { 'Velora': Resolve('elfs/plugin_nanox.elf') };
+const PLUGIN_LIB_NANOSP = { 'Velora': Resolve('elfs/plugin_nanosp.elf') };
+const PLUGIN_LIB_STAX = { 'Velora': Resolve('elfs/plugin_stax.elf') };
+const PLUGIN_LIB_FLEX = { 'Velora': Resolve('elfs/plugin_flex.elf') };
 
 const RANDOM_ADDRESS = "0xaaaabbbbccccddddeeeeffffgggghhhhiiiijjjj";
 
