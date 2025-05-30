@@ -18,11 +18,6 @@ const serializedTx = populateTransaction(contractAddr, inputData, chainID, "101.
 
 const devices = [
   {
-    name: "nanos",
-    label: "Nano S",
-    steps: 8 // <= Define the number of steps for this test case and this device
-  },
-  {
     name: "nanosp",
     label: "Nano S+",
     steps: 7 // <= Define the number of steps for this test case and this device

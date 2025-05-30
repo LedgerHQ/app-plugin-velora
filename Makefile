@@ -15,11 +15,11 @@
 #  limitations under the License.
 #*******************************************************************************
 
-APPNAME = "Paraswap"
+APPNAME = "Velora"
 
 # Application version
 APPVERSION_M = 2
-APPVERSION_N = 3
+APPVERSION_N = 4
 APPVERSION_P = 0
 
 include ethereum-plugin-sdk/standard_plugin.mk
