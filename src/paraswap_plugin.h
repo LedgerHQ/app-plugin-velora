@@ -11,7 +11,7 @@
 #define NUM_PARASWAP_SELECTORS 20
 #define SELECTOR_SIZE          4
 
-#define PLUGIN_NAME "Paraswap"
+#define PLUGIN_NAME "Velora"
 
 #define TOKEN_SENT_FOUND     1
 #define TOKEN_RECEIVED_FOUND 1 << 1
