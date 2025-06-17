@@ -20,6 +20,6 @@ APPNAME = "Velora"
 # Application version
 APPVERSION_M = 2
 APPVERSION_N = 4
-APPVERSION_P = 0
+APPVERSION_P = 1
 
 include ethereum-plugin-sdk/standard_plugin.mk
