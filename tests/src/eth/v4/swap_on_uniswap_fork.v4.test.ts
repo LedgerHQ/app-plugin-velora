@@ -11,11 +11,6 @@ const testNetwork = "ethereum";
 const signedPlugin = false;
 const devices = [
   {
-    name: "nanos",
-    label: "Nano S",
-    steps: 7 // <= Define the number of steps for this test case and this device
-  },
-  {
     name: "nanosp",
     label: "Nano S+",
     steps: 5 // <= Define the number of steps for this test case and this device
